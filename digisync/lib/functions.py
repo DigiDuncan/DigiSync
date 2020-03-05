@@ -1,9 +1,9 @@
 import xxhash
 import digiformatter
 import time
+import sys
 
 BUF_SIZE = 65536  #64kb
-BUF_SIZE_KB = BUF_SIZE / 1024
 
 def hash(file):
     start = time.time()
@@ -20,10 +20,13 @@ def hash(file):
             if not data:
                 break
             x.update(data)
-            currentKbyte += BUF_SIZE_KB
+            currentKbyte += sys.getsizeof(data) / 1024
             now = time.time()
             offset = now - start
             digiformatter.overwriteLines(2)
-            print(f"Hashing... [{currentKbyte:.0f}KB] [{offset:.3f}s]")
+            if currentKbyte > 64:
+                print(f"Hashing... [{currentKbyte:.3f}KB] [{offset:.3f}s]")
+            else:
+                print(f"Hashing... [{currentKbyte * 1024:.0f}B] [{offset:.3f}s]")
     
     return x.hexdigest()

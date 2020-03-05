@@ -1,4 +1,5 @@
 from digisync.lib.functions import hash
 
 def main():
-    print(hash("C:/Windows/MEMORY.DMP"))
+    instring = input("Input a file to hash: ")
+    print(hash(instring))

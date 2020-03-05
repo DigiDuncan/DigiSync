@@ -1,0 +1,9 @@
+# Compiled python
+*.pyc
+
+# Visual Studio Code
+.vscode
+*.code-workspace
+
+# Secret files
+examples/config-friendly.toml

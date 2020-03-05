@@ -1,0 +1,5 @@
+colored==1.4.2
+toml==0.10.0
+digiformatter==0.5.2
+paramiko==2.7.1
+windows-curses==2.1.0

@@ -3,7 +3,7 @@ import digiformatter
 import time
 import sys
 
-from digisync.lib.format import formatByteSize
+from digisync.lib.format import formatByteSize, formatTimeDelta
 
 BUF_SIZE = 65536  #64kb
 
@@ -28,6 +28,6 @@ def hash(file, debug = False):
             offset = now - start
             digiformatter.overwriteLines(2)
             if debug:
-                print(f"Hashing... [{formatByteSize(currentbyte)}] [{offset:.3f}s]")
+                print(f"Hashing... [{formatByteSize(currentbyte)}] [{formatTimeDelta(offset)}]")
     
     return x.hexdigest()

@@ -14,8 +14,6 @@ def hash(file, debug = False):
     currentbyte = 0
 
     print(file)
-    if debug:
-        print("")
 
     with open(file, 'rb') as f:
         while True:
@@ -26,8 +24,8 @@ def hash(file, debug = False):
             currentbyte += sys.getsizeof(data)
             now = time.time()
             offset = now - start
-            digiformatter.overwriteLines(2)
             if debug:
-                print(f"Hashing... [{formatByteSize(currentbyte)}] [{formatTimeDelta(offset)}]")
+                digiformatter.overwriteLines(1)
+                print(f"Hashing... [{formatByteSize(currentbyte)}] [{formatTimeDelta(offset)}]", end = "")
     
     return x.hexdigest()

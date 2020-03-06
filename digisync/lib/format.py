@@ -30,13 +30,13 @@ def formatTimeDelta(totalSeconds, millisecondAccuracy = True):
     seconds, milliseconds = divmod(milliseconds, MILLISECONDS_PER_SECOND)
 
     s = ""
-    if totalSeconds >= MILLISECONDS_PER_YEAR:
+    if milliseconds >= MILLISECONDS_PER_YEAR:
         s += f"{years:d}y"
-    if totalSeconds >= MILLISECONDS_PER_DAY:
+    if milliseconds >= MILLISECONDS_PER_DAY:
         s += f"{days:d}d"
-    if totalSeconds >= MILLISECONDS_PER_HOUR:
+    if milliseconds >= MILLISECONDS_PER_HOUR:
         s += f"{hours:d>2}h"
-    if totalSeconds >= MILLISECONDS_PER_MINUTE:
+    if milliseconds >= MILLISECONDS_PER_MINUTE:
         s += f"{minutes:d>2}m"
     if millisecondAccuracy:
         s += f"{seconds:d>2}.{milliseconds:d}s"

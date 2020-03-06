@@ -3,16 +3,19 @@ import digiformatter
 import time
 import sys
 
+from digisync.lib.format import formatByteSize
+
 BUF_SIZE = 65536  #64kb
 
-def hash(file):
+def hash(file, debug = False):
     start = time.time()
     x = xxhash.xxh64()
 
-    currentKbyte = 0
+    currentbyte = 0
 
     print(file)
-    print("")
+    if debug:
+        print("")
 
     with open(file, 'rb') as f:
         while True:
@@ -20,13 +23,11 @@ def hash(file):
             if not data:
                 break
             x.update(data)
-            currentKbyte += sys.getsizeof(data) / 1024
+            currentbyte += sys.getsizeof(data)
             now = time.time()
             offset = now - start
             digiformatter.overwriteLines(2)
-            if currentKbyte > 64:
-                print(f"Hashing... [{currentKbyte:.3f}KB] [{offset:.3f}s]")
-            else:
-                print(f"Hashing... [{currentKbyte * 1024:.0f}B] [{offset:.3f}s]")
+            if debug:
+                print(f"Hashing... [{formatByteSize(currentbyte)}] [{offset:.3f}s]")
     
     return x.hexdigest()

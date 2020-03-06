@@ -35,12 +35,12 @@ def formatTimeDelta(totalSeconds, millisecondAccuracy = True):
     if totalSeconds >= MILLISECONDS_PER_DAY:
         s += f"{days:d}d"
     if totalSeconds >= MILLISECONDS_PER_HOUR:
-        s += f"{hours:d}h"
+        s += f"{hours:d>2}h"
     if totalSeconds >= MILLISECONDS_PER_MINUTE:
-        s += f"{minutes:d}m"
+        s += f"{minutes:d>2}m"
     if millisecondAccuracy:
-        s += f"{seconds:d}.{milliseconds:d}s"
+        s += f"{seconds:d>2}.{milliseconds:d}s"
     else:
-        s += f"{seconds:d}s"
+        s += f"{seconds:d>2}s"
 
     return s

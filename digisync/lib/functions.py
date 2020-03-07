@@ -40,5 +40,7 @@ def hash(file, debug = False):
                 if lastsecond is not None:    
                     if now - lastsecond >= 1:
                         lastsecond = now
+                else:
+                    lastsecond = now
     
     return x.hexdigest()

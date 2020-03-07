@@ -12,8 +12,12 @@ def hash(file, debug = False):
     x = xxhash.xxh64()
 
     currentbyte = 0
+    lastsecond = None
 
     print(file)
+
+    if debug:
+        print("Hashing...\nSpeed", end = "")
 
     with open(file, 'rb') as f:
         while True:
@@ -25,7 +29,16 @@ def hash(file, debug = False):
             now = time.time()
             offset = now - start
             if debug:
-                digiformatter.overwriteLines(1)
-                print(f"Hashing... [{formatByteSize(currentbyte)}] [{formatTimeDelta(offset)}]", end = "")
+                digiformatter.overwriteLines(2)
+                print(f"Hashing... [{formatByteSize(currentbyte)}] [{formatTimeDelta(offset)}]")
+                if lastsecond is None or now - lastsecond >= 1:
+                    try:
+                        speed = formatByteSize(currentbyte / offset)
+                    except ZeroDivisionError:
+                        speed = "∞"
+                    print(f"{speed}/s", end = "")
+                if lastsecond is not None:    
+                    if now - lastsecond >= 1:
+                        lastsecond = now
     
     return x.hexdigest()

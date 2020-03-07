@@ -42,5 +42,5 @@ def hash(file, debug = False):
                         lastsecond = now
                 else:
                     lastsecond = now
-    
+    print("")
     return x.hexdigest()

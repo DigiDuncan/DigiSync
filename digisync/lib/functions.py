@@ -14,7 +14,7 @@ def hash(file, debug = False):
     currentbyte = 0
     lastsecond = None
 
-    print(file)
+    print(digiformatter.truncate(file, 80, True))
 
     if debug:
         print("Hashing...\nSpeed", end = "")

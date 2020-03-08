@@ -5,7 +5,8 @@ import sys
 
 from digisync.lib.format import formatByteSize, formatTimeDelta
 
-BUF_SIZE = 65536  #64kb
+BUF_SIZE = 65536  # 64kb
+
 
 def hash(file, debug = False):
     start = time.time()
@@ -37,10 +38,23 @@ def hash(file, debug = False):
                     except ZeroDivisionError:
                         speed = "∞"
                     print(f"{speed}/s", end = "")
-                if lastsecond is not None:    
+                if lastsecond is not None:
                     if now - lastsecond >= 1:
                         lastsecond = now
                 else:
                     lastsecond = now
     print("")
     return x.hexdigest()
+
+
+def readINI(ini):
+    # Returns a dictionary of value pairs.
+    # I'm making this function from scratch
+    # because the built in one screws up with
+    # duplicate keys and a bunch of the inis
+    # in the dataset are malformed like that.
+
+    inif = open(ini)
+    lines = inif.readlines()
+    # TODO: Do stuff...
+    inif.close()
